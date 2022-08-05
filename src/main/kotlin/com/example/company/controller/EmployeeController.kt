@@ -13,6 +13,11 @@ class EmployeeController {
     @GetMapping("/getemployee")
     fun getEmployee():Employee{
 
-        return Employee("Damon", age = 28, skillList = listOf(Skill("Flying",1),Skill("Biting",3),Skill("Dancing",3))  )
+        return Employee(
+            "Damon",
+            surname = "Salvatore",
+            age = 28,
+            skillList = listOf(Skill("Flying", 1), Skill("Biting", 3), Skill("Dancing", 3))
+        )
     }
 }
