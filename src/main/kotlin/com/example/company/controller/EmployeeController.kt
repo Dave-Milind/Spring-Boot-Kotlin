@@ -1,7 +1,8 @@
 package com.example.company.controller
 
-import com.example.company.Model.Employee
-import com.example.company.Model.Skill
+import com.example.company.entity.Employee
+import com.example.company.service.EmployeeService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -10,14 +11,26 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/employee/")
 class EmployeeController {
 
-    @GetMapping("/getemployee")
-    fun getEmployee():Employee{
+    @Autowired
+    lateinit var employeeService: EmployeeService
+
+
+    @GetMapping("get-all-employees")
+    fun getAllEmployees(): List<Employee> {
+
+        return employeeService.getAllEmployees()
+    }
+
+
+    @GetMapping("/get-dummy-employee")
+    fun getEmployee(): Employee {
 
         return Employee(
-            "Damon",
-            surname = "Salvatore",
-            age = 28,
-            skillList = listOf(Skill("Flying", 1), Skill("Biting", 3), Skill("Dancing", 3))
+            employeeId = 900,
+            employeeName = "Damon salvatore",
+            emailId = "damon@somedomain.com",
+            mobileNumber = "0909090984"
         )
+
     }
 }
